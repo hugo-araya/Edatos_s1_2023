@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #define N 10
 #define NULO -1
 #define VACIA -1
@@ -10,33 +12,55 @@ typedef struct{
     int sig[N];
 } LISTA;
 
-// Funciones basicas
 LISTA crea_lista();
 void muestra_lista(LISTA l);
 BOOLEAN lista_vacia(LISTA l);
 BOOLEAN lista_llena(LISTA l);
 int largo_lista(LISTA l);
-
-// Funciones primitivas
-int buscar_mem(LISTA l); // Equivalente a MALLOC
-
-// Funciones primitivas que agregan
+int buscar_mem(LISTA l);
 LISTA add_final(LISTA l, int elem);
 LISTA add_inicio(LISTA l, int elem);
-LISTA add_pos(LISTA l, int elem, int despues);
-
-// Funciones primitivas que eliminan nodos
-LISTA del_final(LISTA l, int *devolver);
+LISTA del_final(LISTA l);
 LISTA del_inicio(LISTA l);
-LISTA del_pos(LISTA l, int posicion);
-
-// Funciones derivadas
-
-LISTA invierte_lista(LISTA l);
-
-// Funciones de construccion
 void muestra (LISTA l);
 void largo(LISTA l);
+
+int main(){
+    LISTA l;
+    l = crea_lista();
+    muestra_lista(l);
+    l = add_final(l, 5);
+    muestra_lista(l);
+    l = add_final(l, 7);
+    muestra_lista(l);
+    l = add_final(l, 9);
+    muestra_lista(l);
+    l = add_inicio(l, 6);
+    muestra_lista(l);
+    l = add_inicio(l, 8);
+    muestra_lista(l);
+    l = add_final(l, 3);
+    muestra_lista(l);
+    l = del_final(l);
+    muestra_lista(l);
+    muestra(l);
+    l = del_final(l);
+    muestra_lista(l);
+    l = del_final(l);
+    muestra_lista(l);
+    l = del_final(l);
+    muestra_lista(l);
+    l = del_final(l);
+    muestra_lista(l);
+    l = del_final(l);
+    muestra_lista(l);
+    l = add_inicio(l, 6);
+    largo(l);
+    l = del_inicio(l);
+    muestra(l);
+    largo(l);
+    return 0;
+}
 
 LISTA crea_lista(){
     LISTA aux;
@@ -147,17 +171,11 @@ LISTA add_inicio(LISTA l, int elem){
     }
 }
 
-LISTA add_pos(LISTA l, int elem, int despues){
-
-    return l;
-}
-
-LISTA del_final(LISTA l, int *devolver){
+LISTA del_final(LISTA l){
     int p, q;
     if (lista_vacia(l) == FALSE){
         p = l.punt;
         if (l.sig[p] == NULO){
-            *devolver = l.dato[p];
             l.dato[p] = VACIA;
             l.punt = NULO;
         }
@@ -166,7 +184,6 @@ LISTA del_final(LISTA l, int *devolver){
                 q = p;
                 p = l.sig[p];
             }
-            *devolver = l.dato[p];
             l.dato[p] = VACIA;
             l.sig[q] = NULO;
         }
@@ -197,25 +214,6 @@ LISTA del_inicio(LISTA l){
     return l;
 }
 
-LISTA del_pos(LISTA l, int posicion){
-
-    return l;
-}
-
-// Funciones derivadas
-
-LISTA invierte_lista(LISTA l){
-    LISTA aux;
-    int devolver;
-    while (lista_vacia(l) == FALSE){
-        l = del_final(l, &devolver);
-        aux = add_final(aux, devolver);
-    }
-    return aux;
-}
-
-
-// Funciones de construccion
 void muestra (LISTA l){
     int i;
     printf("Puntero: %d\n", l.punt);
