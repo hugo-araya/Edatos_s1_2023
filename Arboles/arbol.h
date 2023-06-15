@@ -18,6 +18,7 @@ void arbolito(ARBOL **raiz);
 int max(int a, int b);
 int altura(ARBOL * a);
 void contadorNodos(ARBOL *a, int *CONTADOR);
+void contadorHojas(ARBOL *a, int *CONTADOR);
 
 // Implementacion Arbol
 
@@ -143,9 +144,20 @@ int max(int a, int b){
 }
 
 void contadorNodos(ARBOL *a, int *CONTADOR){
-	if (a != NULL){		
+	if (a != NULL){
+
 		*CONTADOR = *CONTADOR + 1;
 		contadorNodos(a->izq, CONTADOR);
 		contadorNodos(a->der, CONTADOR);
+	}
+}
+
+void contadorHojas(ARBOL *a, int *CONTADOR){
+	if (a != NULL){
+        if ((a->izq == NULL) && (a->der == NULL)){
+		    *CONTADOR = *CONTADOR + 1;
+        }
+		contadorHojas(a->izq, CONTADOR);
+		contadorHojas(a->der, CONTADOR);
 	}
 }

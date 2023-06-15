@@ -4,6 +4,7 @@
 int main(){
     ARBOL *raiz;
     int CONTADOR = 0;
+    int CONTADORHOJAS = 0;
     crearArbol(&raiz);
     arbolito(&raiz);
     printf("\nPreorden ");
@@ -17,6 +18,9 @@ int main(){
     printf("\nCantidad de nodos: ");
     contadorNodos(raiz, &CONTADOR);
     printf("%d", CONTADOR);
+    printf("\nCantidad de hojas: ");
+    contadorHojas(raiz, &CONTADORHOJAS);
+    printf("%d", CONTADORHOJAS);
     printf("\n\n<< Finalizado >>\n\n");
     return 0;
 }
